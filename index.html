@@ -7527,6 +7527,41 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Contribution Checkpoints:</p>
+<p>A: Project idea - 5%
+B: Dataset Curation and Preprocessing - 15%
+C: Data Exploration and Summary Statistics - 10%
+D: ML Algorithm Design/Development - 25%
+E: ML Algorithm Training and Test Data Analysis - 20%
+F: Visualization, Result Analysis - 15%
+G: Final Tutorial's Conclusion - 1%</p>
+<p>Member 1: Chukwubuike Peterson Contribution: 90% (did not contribute to B). </p>
+<p>Member 2: Ryan Jiang, Contribution: 100%</p>
+<p>"We, all team members, agree together that the above information is true, and we are confident about our contributions to this submitted project/final tutorial."</p>
+<p><strong>Chukwubuike Peterson on 5/7/24</strong></p>
+<p><strong>Ryan Jiang on 5/7/24</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Chukwubuike helped out with the setting up the github repo and moving over the content for part 2 and 3 and worked on part 4 and conclusion</p>
+<p>Ryan wrote the intro and heavily edited part 2,3,4, and 5</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="1.-Introduction">1. Introduction<a class="anchor-link" href="#1.-Introduction">¶</a></h2><p>Japanese animation, or anime, has transcended boundaries and exploded in popularity in recent years. Once a niche interest in the West, a 2023 survey reveals a dedicated viewership: <a href="https://www.polygon.com/c/2024/1/22/24034466/anime-viewer-survey-research">25% of Millennials and a staggering 42% of Gen Zs watch anime weekly</a>. This trend aligns with projections of the anime industry reaching a massive <a href="https://finance.yahoo.com/news/anime-market-reach-usd-62-120000412.html">$62.7 billion by 2032</a>. Anime's cultural impact extends beyond viewership - celebrities and artists openly reference it, further solidifying its place in popular culture. However, popularity paints an incomplete picture. As anime embeds itself within the next generation's cultural landscape, a critical data gap emerges. This has sparked an interest in answering the question: What makes anime appeal with viewers?</p>
 <p>Specifically recognizing that fan preferences constantly evolve, we want to know past trends and also predict what qualities resonate with viewers. Essentially, this study seeks to anticipate what stories and styles will capture audiences in this ever-evolving landscape of anime. Further analysis can reveal hidden connections between genres and popularity and can be leveraged to know which contents are more likely to be successful. Combining these findings from quantitative research with external qualitative research can offer a more complete understanding of anime's impact and its influence within society. Overall, this study will attempt to uncover any relationships between variables of anime and other factors.</p>
 </div>
@@ -7553,6 +7588,14 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MultiLabelBinarizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">RANSACRegressor</span><span class="p">,</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"animes.csv"</span><span class="p">)</span>
 </pre></div>
@@ -7582,10 +7625,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="c1"># Remove duplicates</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Remove duplicates</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
 <span class="c1"># changing columns types from string to int</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'members'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'members'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -8145,33 +8185,6 @@ We also took a look at ranks and genre and noticed that certain genres are repre
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The following are packages that will be required in order to build a machine learning model.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MultiLabelBinarizer</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The provided code is performing a simple linear regression analysis using the 'popularity' feature to predict the 'ranked' value.</p>
 <p>We decided to test this because both 'ranked' and 'popularity' are both considered better when lower AKA closer to zero. Both features share the feature of being one to one, meaning that one anime's 'popularity' value will never be the same as another anime, the same being said for the 'ranked' value.</p>
 <p>First, it selects the 'popularity' column from the DataFrame df and reshapes it into a 2D array, which is the required input shape for the scikit-learn model. The target variable 'ranked' is also selected.</p>
@@ -8381,11 +8394,7 @@ We also took a look at ranks and genre and noticed that certain genres are repre
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'aired'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'aired'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'aired'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'day'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'aired'</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
 
@@ -8456,11 +8465,7 @@ We also took a look at ranks and genre and noticed that certain genres are repre
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">RANSACRegressor</span><span class="p">,</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="c1"># Fit RANSAC model</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Fit RANSAC model</span>
 <span class="n">ransac</span> <span class="o">=</span> <span class="n">RANSACRegressor</span><span class="p">()</span>
 <span class="n">ransac</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
@@ -8663,7 +8668,7 @@ dtype: float64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We are now going to plot the top ten genres to get more of a visual representation of what our model found. According to the this model, whenever an anime is considered a Thriller, it has a higher chance of scoring a better score with a predicted 0.4 increase compared to similiar non-Thriller anime.</p>
+<p>We are now going to plot the top ten genres to get more of a visual representation of what our model found. According to the this model, whenever an anime is considered a Thriller, it has a higher chance of scoring a better score with a predicted 0.45 increase compared to similiar non-Thriller anime.</p>
 </div>
 </div>
 </div>
@@ -8710,6 +8715,31 @@ dtype: float64
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="5.-Insights-and-Conclusion:">5. Insights and Conclusion:<a class="anchor-link" href="#5.-Insights-and-Conclusion:">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Based off of our models and observations, we can conclude several points:</p>
+<ol>
+<li><p>The popularity of an anime has a very strong correlation with its ranking within the community. The major difference between the two is that popularity is how many people like it, while rank is comparing the quality of the show.
+Based off of our model, we can state that people generally like to enjoy anime that are considered high quality.</p>
+</li>
+<li><p>We also did a similar linear regression model comparing popularity and score. By comparing both of these, we can see that there is a strong correlation between the two. Through this we can assume that the more popular an anime is, the better the score/rating it receives.</p>
+</li>
+<li><p>Our third model sought to answer the question of whether aired date has a correlation with score. We initially created a linear regression model similiar to the first two, but after realizing that perhaps pre-WW2 animations could be posing as an outlier, we decided on Random Sampling Consensus, which did eliminate outliers, but the results were somewhat dissapointing. The model could only explain 30% and had an almost miniscule negative coefficient. We could say that the older a show is, the better the say, however, we are not as confident as we want to be.</p>
+</li>
+<li><p>In our last model and most anticipated, we created a model which would see which genres had the highest impact on a show's score. We utilized MultiLabel Binarizer which allows you to create binary for the mutiple possible genres a show can have. We then created a linear regression model which allowed use to see which genre has the biggest effect. We printed out the top 10, and on the top of the list is the Thriller tag. This means that if an anime has the genre of Thriller, there is a higher chance of scoring a score with a 0.45 increase compared to similiar types of anime that are not Thrillers.</p>
+</li>
+</ol>
+<p>The imformation we discovered could be benficial to studios who might be trying to create a new popular anime. We can also use it to disprove the sentiment that nostalgia plays a major role in older anime's score. If we were to conduct further research on this topic, we would like to perhaps create a timeline of genre occurences throughout the years. We also would like to work with more recent shows since this dataset is outdated by a few years.</p>
+<p>Overall, we went to a process of brainstorming ideas, cleaning and processing data, exploring and visualizing data, creating models to test hypothesis, and finally concluding and making recommendations.</p>
+<p>All relevant files we used for this project can be <a href="https://github.com/ChuckVisuals/ChuckVisuals.github.io">found here</a></p>
 </div>
 </div>
 </div>
